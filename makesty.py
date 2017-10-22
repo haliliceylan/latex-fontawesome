@@ -3,6 +3,8 @@
 
 from bs4 import BeautifulSoup
 from urllib import urlopen
+from StringIO import StringIO
+import gzip
 import re
 
 CHEATSHEET_URL = 'http://fortawesome.github.io/Font-Awesome/cheatsheet/'
@@ -33,8 +35,14 @@ OUTPUT_LINE += '{\symbol{"%(symbol)s}} \def\%(camel_name)s '
 OUTPUT_LINE += '{{\FA\csname faicon@%(name)s\endcsname}}\n'
 
 try:
-    u = urlopen(CHEATSHEET_URL)
-    soup = BeautifulSoup(u.read(), 'html.parser')
+    response = urlopen(CHEATSHEET_URL)
+    if response.info().get('Content-Encoding') == 'gzip':
+        buf = StringIO(response.read())
+        f = gzip.GzipFile(fileobj=buf)
+        data = f.read()
+    else:
+        data = response.read()
+    soup = BeautifulSoup(data, 'html.parser')
 
     cheatsheet = soup.select('div.row > div')
 except:
