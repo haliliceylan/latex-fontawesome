@@ -9,12 +9,12 @@ CHEATSHEET_URL = 'http://fortawesome.github.io/Font-Awesome/cheatsheet/'
 OUTPUT_FILE = 'fontawesome.sty'
 
 OUTPUT_HEADER = r'''
-%% Copyright 2015-2016 Claud D. Park <posquit0.bj@gmail.com>
+%% Copyright 2015-2017 Claud D. Park <posquit0.bj@gmail.com>
 %% It is based on furl's latex-fontawesome project.
 
 % Identify this package.
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{fontawesome}[2016/11/23 v4.7.0 font awesome icons]
+\ProvidesPackage{fontawesome}[2017/10/22 v4.7.0 font awesome icons]
 
 % Requirements to use.
 \usepackage{fontspec}
